@@ -7,6 +7,12 @@ public class Arreglo {
 
     private Scanner scanner = new Scanner(System.in);
 
+    public String[] BorrarArreglo(){
+        length = 0;
+        return new String[MAX];
+    }
+
+
     public  void InsertarArreglo(){
         if (length >= MAX) {
             System.out.println("El arreglo está lleno.");
@@ -32,10 +38,6 @@ public class Arreglo {
         return letra.toUpperCase() + letra;
     }
 
-    private String prioritizeOrder(String letter) {
-        return letter.toUpperCase() + letter;
-    }
-
     public void BuscarArreglo(){
         System.out.println("Letra que deseas buscar: ");
         String LetraBuscada = scanner.next();
@@ -51,5 +53,71 @@ public class Arreglo {
         }else{
             System.out.println("Letra no encontrada");
         }
+    }
+
+    public void VerArreglo(){
+        for (int i = 0; i < length; i++ ){
+            System.out.println(array[i] + "");
+        }
+        System.out.println();
+    }
+
+    public void eliminarLetra() {
+        System.out.print("Ingresa la letra a eliminar: ");
+        String letra = scanner.next();
+        int index = -1;
+        for (int i = 0; i < length; i++) {
+            if (array[i].equals(letra)) {
+                index = i;
+                break;
+            }
+        }
+
+        if (index == -1) {
+            System.out.println("Letra no encontrada.");
+            return;
+        }
+
+        for (int i = index; i < length - 1; i++) {
+            array[i] = array[i + 1];
+        }
+        length--;
+        System.out.println("Letra eliminada de la posición: " + index);
+    }
+
+    public void ModificarArreglo() {
+        System.out.print("Ingresa la letra a modificar: ");
+        String letra = scanner.next();
+        int index = -1;
+        for (int i = 0; i < length; i++) {
+            if (array[i].equals(letra)) {
+                index = i;
+                break;
+            }
+        }
+
+        if (index == -1) {
+            System.out.println("Letra no encontrada.");
+            return;
+        }
+
+        System.out.print("Ingresa la nueva letra: ");
+        String nuevaLetra = scanner.next();
+        array[index] = nuevaLetra;
+        while (index > 0 && OrdenMayusMin(array[index]).compareTo(OrdenMayusMin(array[index - 1])) < 0) {
+            String temp = array[index];
+            array[index] = array[index - 1];
+            array[index - 1] = temp;
+            index--;
+        }
+
+        while (index < length - 1 && OrdenMayusMin(array[index]).compareTo(OrdenMayusMin(array[index + 1])) > 0) {
+            String temp = array[index];
+            array[index] = array[index + 1];
+            array[index + 1] = temp;
+            index++;
+        }
+
+        System.out.println("Letra modificada y ahora se encuentra en la posición: " + index);
     }
 }

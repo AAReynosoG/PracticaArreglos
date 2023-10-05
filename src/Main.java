@@ -5,9 +5,9 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         String opcion;
+        Arreglo array = new Arreglo();
 
         do {
-            Arreglo array = new Arreglo();
 
             System.out.println("Menú de Opciones:");
             System.out.println("a).  Borrar arreglo.");
@@ -24,12 +24,12 @@ public class Main {
             switch (opcion){
 
                 case "a":
-                    System.out.println("a");
+                    array.BorrarArreglo();
                     System.out.println("Presiona 'Enter' para continuar...");
                     sc.nextLine();
                     break;
                 case "b":
-                    System.out.println("b");
+                    array.VerArreglo();
                     System.out.println("Presiona 'Enter' para continuar...");
                     sc.nextLine();
                     break;
@@ -44,12 +44,12 @@ public class Main {
                     sc.nextLine();
                     break;
                 case "e":
-                    System.out.println("e");
+                    array.eliminarLetra();
                     System.out.println("Presiona 'Enter' para continuar...");
                     sc.nextLine();
                     break;
                 case "f":
-                    System.out.println("f");
+                    array.ModificarArreglo();
                     System.out.println("Presiona 'Enter' para continuar...");
                     sc.nextLine();
                     break;
